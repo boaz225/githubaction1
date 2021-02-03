@@ -18,7 +18,7 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
-- task: build-release-task@0.0.1
+- task: inki-siv Build and Release Tools@0.0.1
   inputs:
     script: |
       echo Write your commands here
