@@ -18,9 +18,8 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
-- task: inki-siv Build and Release Tools@0.0.1
+
+- task: SSH@0
   inputs:
-    script: |
-      echo Write your commands here
-      
-      echo Hello world
+    runOptions: 'commands'
+    readyTimeout: '20000'
