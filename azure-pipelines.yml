@@ -18,8 +18,4 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
-
-- task: SSH@0
-  inputs:
-    runOptions: 'commands'
-    readyTimeout: '20000'
+- task: TEST1@0
