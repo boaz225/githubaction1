@@ -19,3 +19,5 @@ steps:
   displayName: 'Run a multi-line script'
 
 - task: TEST1@0
+  inputs:
+   samplestring: "human"
