@@ -8,7 +8,7 @@ resources:
     - repository: Ecosystem-Trunk
       type: githubenterprise
       name: Ecosystem-Trunk/ET-Catalogue
-      endpoint: github-partne
+      endpoint: GHE_Partners
       ref: dev
 
 trigger:
