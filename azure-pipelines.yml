@@ -7,7 +7,7 @@ trigger:
 - none
 
 pool:
-  vmImage: 'test1'
+  name: 'test1'
 
 steps:
 - script: echo Hello, world!
@@ -26,3 +26,10 @@ steps:
       taskkill /im ffmpeg.exe
   condition: succeeded()
   displayName: 'GFriend Runner Execution'
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Agent.TempDirectory)'
+    artifact: 'ado_gfriend_resutl_$(Agent.ID)'
+    publishLocation: 'pipeline'
+  displayName: 'Publish GF data result'
+  condition: always()
