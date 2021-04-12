@@ -23,7 +23,7 @@ steps:
     script: |
       start ffmpeg -y -rtbufsize 200M -f gdigrab -framerate 15 -probesize 10M -draw_mouse 1 -i desktop -c:v libx264 -r 30 -preset ultrafast -tune zerolatency -crf 25 -pix_fmt yuv420p $(Agent.TempDirectory)\\recording.mp4
       dir
-      timeout 10
+      ping 127.0.0.1 -n 10
       taskkill /im ffmpeg.exe
   condition: succeeded()
   displayName: 'GFriend Runner Execution'
