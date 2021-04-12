@@ -21,6 +21,9 @@ pool:
   name: 'test1'
 
 steps:
+- checkout: self
+- checkout: Ecosystem-Trunk
+
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
