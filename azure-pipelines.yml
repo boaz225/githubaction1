@@ -34,10 +34,11 @@ steps:
 
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
-
 - task: ScreenResolutionUtility@1
   inputs:
-    displaySettings: 'optimal'
+    displaySettings: 'specific'
+    width: '1920'
+    height: '1080'
 - task: InstallPython@1
   inputs:
     version: 'python'
