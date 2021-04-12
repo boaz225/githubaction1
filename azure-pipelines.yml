@@ -23,6 +23,14 @@ pool:
 steps:
 - checkout: self
 - checkout: Ecosystem-Trunk
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      choco install GoogleChrome --ignore-checksums
+      choco install selenium
+      choco install selenium-all-drivers
+  displayName: 'Chrome and Selenium Installation'
 
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
@@ -39,6 +47,18 @@ steps:
     # install pip as part of the dependencies because otherwise we get a warning which causes ADO to fail due to pip not being the latest version
     dependencies: 'pip requests'
   displayName: 'Python Installation'
+- script: |
+    python --version
+  displayName: 'Python Version'
+
+- script: |
+    set
+  displayName: 'Env Variables'
+  condition: always()
+
+- powershell: |
+    Write-Host loadtesthpsmat+$(Agent.MachineName)$(Build.BuildNumber)$(Build.BuildId)@gmail.com
+  displayName: 'Signup Username account'  
 - task: PythonScript@0
   inputs:
     scriptSource: 'inline'
