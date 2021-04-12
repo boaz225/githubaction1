@@ -3,9 +3,20 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+resources:
+  repositories:
+    - repository: Ecosystem-Trunk
+      type: githubenterprise
+      name: Ecosystem-Trunk/ET-Catalogue
+      endpoint: github-partne
+      ref: dev
+
 trigger:
 - none
 
+variables:
+  - name: ADO_GFRIEND_HOME
+    value: C:\\agent\\_work\\_tool\\gfriend\\
 pool:
   name: 'test1'
 
@@ -42,8 +53,7 @@ steps:
   inputs:
     script: |
       start ffmpeg -y -rtbufsize 200M -f gdigrab -framerate 15 -probesize 10M -draw_mouse 1 -i desktop -c:v libx264 -r 30 -preset ultrafast -tune zerolatency -crf 25 -pix_fmt yuv420p $(Agent.TempDirectory)\\recording.mp4
-      dir
-      ping 127.0.0.1 -n 10
+      $(ADO_GFRIEND_HOME)\\GF_Runner.exe -i 15.86.1.35 -t ET-Catalogue\Integration\hpid\ui_HPSmart.txt -c HP_ID_SignUp_Stage -o $(Agent.TempDirectory)
       taskkill /im ffmpeg.exe
   condition: succeeded()
   displayName: 'GFriend Runner Execution'
