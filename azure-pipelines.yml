@@ -21,3 +21,8 @@ steps:
 - task: TEST1@0
   inputs:
    samplestring: "human"
+- task: ScreenResolutionUtility@1
+  inputs:
+    displaySettings: 'specific'
+    width: '1920'
+    height: '1080'
