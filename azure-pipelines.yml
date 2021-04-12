@@ -18,6 +18,26 @@ steps:
     displaySettings: 'specific'
     width: '1280'
     height: '1024'
+- task: InstallPython@1
+  inputs:
+    version: 'python'
+    #Note
+    # install pip as part of the dependencies because otherwise we get a warning which causes ADO to fail due to pip not being the latest version
+    dependencies: 'pip requests'
+  displayName: 'Python Installation'
+- task: PythonScript@0
+  inputs:
+    scriptSource: 'inline'
+    script: |
+      import requests
+      import zipfile
+      gfriend_location_url = "https://8v0mj43oxb.execute-api.ap-northeast-2.amazonaws.com/gfriend/binary/gfriend"
+      r = requests.get(gfriend_location_url, allow_redirects=True)
+      open('gfriend', 'wb').write(r.content)
+      with zipfile.ZipFile('gfriend', 'r') as zip_ref:
+          zip_ref.extractall('$(ADO_GFRIEND_HOME)')
+  condition: succeeded()
+  displayName: 'GFriend Installation'
 - task: CmdLine@2
   inputs:
     script: |
