@@ -37,9 +37,7 @@ steps:
 
 - task: ScreenResolutionUtility@1
   inputs:
-    displaySettings: 'specific'
-    width: '1280'
-    height: '1024'
+    displaySettings: 'optimal'
 - task: InstallPython@1
   inputs:
     version: 'python'
