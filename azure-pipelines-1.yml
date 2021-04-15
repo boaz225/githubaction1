@@ -1,0 +1,34 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+- name: vm_count 
+  value: 5
+
+stages:
+- stage: Terraform
+  jobs:
+  - job: J1
+    workspace:
+      clean: all
+    steps:
+    - bash: |
+        cat $(terraformApply.jsonOutputVariablesPath)
+        for i in {0..$(vm_count)};do
+          echo "id_${i}=${i}"
+          echo "##vso[task.setvariable variable=instanceid_${i};isOutput=true]${i}"
+      name: TerraForm
+  - job: T2
+    steps:
+      - bash: |
+          echo ${{ variables.vm_count}}
+          echo ${{ variables.instanceid_1}}
+        
