@@ -17,6 +17,7 @@ stages:
 - stage: Terraform
   jobs:
   - job: J1
+    timeoutInMinutes: 120
     workspace:
       clean: all
     steps:
@@ -27,6 +28,5 @@ stages:
     dependsOn: J1
     steps:
       - bash: |
-          echo ${{ variables.vm_count}}
-          echo ${{ variables.t1}}
+          sleep 7000
         
