@@ -36,8 +36,10 @@ stages:
     variables:
       ${{ if eq(variables['vm_count'], '5') }}:
         stageName: prod
+        stageSize: 5
       ${{ if ne(variables['vm_count'], '5') }}:
         stageName: dev
+        stageSize: 10
     steps:
       - bash: |
           echo ${{ variables.vm_count}}
@@ -49,4 +51,5 @@ stages:
           echo "MINOR= $MINOR"
           echo "a= $A"
           echo "stagetName : $(stageName)"
+          echo "stageSize: $(stageSize)"
         
