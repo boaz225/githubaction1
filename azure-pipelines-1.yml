@@ -16,6 +16,8 @@ variables:
   value: 2
 - name : minor
   value : $[counter(variables['major'], 100)]
+- name : a
+  value : $[counter(format('{0:yyyyMMdd}', pipeline.startTime), 100)]
 
 stages:
 - stage: Terraform
@@ -39,4 +41,5 @@ stages:
           echo $T1
           echo "minor= $(minor)"
           echo "MINOR= $MINOR"
+          echo "a= $A"
         
