@@ -24,11 +24,7 @@ stages:
   jobs:
   - job: J1
     timeoutInMinutes: 120
-    variables:
-      ${{ if eq(variables['vm_count'], '5') }}:
-        stageName: prod
-      ${{ if ne(variables['vm_count'], '5') }}:
-        stageName: dev
+    
     workspace:
       clean: all
     steps:
@@ -37,6 +33,11 @@ stages:
           echo "##vso[task.setvariable variable=t1;isOutput=true]${i}"
   - job: T2
     dependsOn: J1
+    variables:
+      ${{ if eq(variables['vm_count'], '5') }}:
+        stageName: prod
+      ${{ if ne(variables['vm_count'], '5') }}:
+        stageName: dev
     steps:
       - bash: |
           echo ${{ variables.vm_count}}
