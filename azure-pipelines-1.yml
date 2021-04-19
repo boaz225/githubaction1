@@ -42,4 +42,5 @@ stages:
           echo "minor= $(minor)"
           echo "MINOR= $MINOR"
           echo "a= $A"
+          echo "pipeline.StartTime = ${{ pipeline.startTime }}"
         
