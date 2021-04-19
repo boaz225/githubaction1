@@ -12,6 +12,10 @@ pool:
 variables:
 - name: vm_count 
   value: 5
+- name: major
+  value: 1
+- name : minor
+  value : $[counter(variables['major'], 100)]
 
 stages:
 - stage: Terraform
@@ -28,5 +32,11 @@ stages:
     dependsOn: J1
     steps:
       - bash: |
-          sleep 7000
+          echo ${{ variables.vm_count}}
+          echo ${{ variables.instanceid_1}}
+          echo ${{ variables.t1}}
+          echo $(t1)
+          echo $T1
+          echo "minor= $(minor)"
+          echo "MINOR= $MINOR"
         
