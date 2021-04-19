@@ -24,6 +24,11 @@ stages:
   jobs:
   - job: J1
     timeoutInMinutes: 120
+    variables:
+      ${{ if eq(variables['vm_count'], '5') }}:
+        stageName: prod
+      ${{ if ne(variables['vm_count'], '5') }}:
+        stageName: dev
     workspace:
       clean: all
     steps:
@@ -42,5 +47,5 @@ stages:
           echo "minor= $(minor)"
           echo "MINOR= $MINOR"
           echo "a= $A"
-          echo "pipeline.StartTime = $(Pipeline.StartTime)"
+          echo "stagetName : $(stageName)"
         
