@@ -13,7 +13,7 @@ variables:
 - name: vm_count 
   value: 5
 - name: major
-  value: 1
+  value: 2
 - name : minor
   value : $[counter(variables['major'], 100)]
 
